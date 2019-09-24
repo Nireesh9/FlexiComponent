@@ -1,2 +1,0 @@
-# FlexiComponent
-Created with CodeSandbox
