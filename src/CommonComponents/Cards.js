@@ -23,31 +23,19 @@ const useStyles = makeStyles({
 });
 
 export default function SimpleCard(props) {
-  const renderSwitch = Items => {
-    switch (Items.type) {
-      case "TexField":
-        return <TextField propsData={Items.props} />;
-      case "RadioGruop":
-        return <RadioGruop propsData={Items.props} />;
-      case "Button":
-        return <Button propsData={Items.props} />;
-      default:
-        return "foo";
-    }
-  };
-  const ChildrenData = props;
-  // console.log(ChildrenData.ChildrenData.items);
+  const propsData = props.propsData;
+  console.log(propsData, "CardsData2222");
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
       <CardContent>
-        {ChildrenData}
         {/* {ChildrenData.ChildrenData.items.map((Items, Index) =>
          
           renderSwitch(Items)
         )} */}
+        o[ughfe0irugbs[dbnorsi]]
       </CardContent>
     </Card>
   );

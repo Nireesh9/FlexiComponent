@@ -5,22 +5,72 @@ import Card from "./CommonComponents/CardView";
 import TextField from "./CommonComponents/TextField";
 import Button from "./CommonComponents/Button";
 import RadioGruop from "./CommonComponents/RadioButton";
+import Cards from "./CommonComponents/Cards";
 import "./styles.css";
 const flexConfigForRegistration = {
   items: [
     {
+      type: "Card",
+      props: {
+        label: "Good work labs",
+        horozintalAlign: "left"
+      }
+    },
+    {
       type: "Header",
       props: {
-        label: "Registration",
-        horozintalAlign: "center",
-        verticalAlign: "center"
+        label: "Technology",
+        horozintalAlign: "left"
+      }
+    },
+    {
+      type: "Card",
+      props: {
+        color: "grey"
+      },
+      children: {
+        items: [
+          {
+            type: "Cards",
+            props: {
+              cards: [
+                {
+                  label: "Java",
+                  horizontalAlign: "center",
+                  verticalAlign: "center",
+                  color: "orange"
+                },
+                {
+                  label: "React",
+                  horizontalAlign: "center",
+                  verticalAlign: "center",
+                  color: "blue"
+                },
+                {
+                  label: "Node",
+                  horizontalAlign: "center",
+                  verticalAlign: "center",
+                  color: "pink"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      type: "Header",
+      props: {
+        label: "Drop Message",
+        horozintalAlign: "left"
       }
     },
     {
       type: "Card",
       props: {
         color: "grey",
-        horozintalAlign: "left"
+        horizontalAlign: "center",
+        verticalAlign: "center"
       },
       children: {
         items: [
@@ -49,40 +99,9 @@ const flexConfigForRegistration = {
             }
           },
           {
-            type: "RadioGruop",
-            props: {
-              label: "Gender",
-              name: "gender",
-              options: [
-                {
-                  label: "Male"
-                },
-                {
-                  label: "Female"
-                }
-              ]
-            }
-          },
-          {
-            type: "TexField",
-            props: {
-              inputType: "password",
-              label: "Password",
-              name: "password"
-            }
-          },
-          {
-            type: "TexField",
-            props: {
-              inputType: "password",
-              label: "Confirm Password",
-              name: "confirmPassword"
-            }
-          },
-          {
             type: "Button",
             props: {
-              label: "Register"
+              label: "Submit"
             }
           }
         ]
@@ -104,14 +123,18 @@ class App extends React.Component {
         case "Card":
           if (isChildrenAvalible) {
             console.log("Callingchilgren");
-            {
-              Items.children.items.map((Item, Index) => renderSwitch(Item));
-            }
-            return <Card ChildrenData={Items} />;
+
+            return Items.children.items.map((Item, Index) => (
+              <Card> {renderSwitch(Item)}</Card>
+            ));
+
+            // return <Card ChildrenData={Items}  />;
           } else {
             return <Card ChildrenData={Items.props} />;
           }
-
+        case "Cards":
+          console.log("MultipleCardsDisplaying");
+          return <Cards propsData={Items.props} />;
         case "TexField":
           console.log("Textfieldis displaying");
           return <TextField propsData={Items.props} />;
