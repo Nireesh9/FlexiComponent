@@ -5,7 +5,6 @@ import Card from "./CommonComponents/CardView";
 import TextField from "./CommonComponents/TextField";
 import Button from "./CommonComponents/Button";
 import RadioGruop from "./CommonComponents/RadioButton";
-import Cards from "./CommonComponents/Cards";
 import "./styles.css";
 const flexConfigForRegistration = {
   items: [
@@ -132,9 +131,7 @@ class App extends React.Component {
           } else {
             return <Card ChildrenData={Items.props} />;
           }
-        case "Cards":
-          console.log("MultipleCardsDisplaying");
-          return <Cards propsData={Items.props} />;
+
         case "TexField":
           console.log("Textfieldis displaying");
           return <TextField propsData={Items.props} />;
