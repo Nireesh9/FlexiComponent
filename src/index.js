@@ -5,6 +5,7 @@ import Card from "./CommonComponents/CardView";
 import TextField from "./CommonComponents/TextField";
 import Button from "./CommonComponents/Button";
 import RadioGruop from "./CommonComponents/RadioButton";
+import MultipleCards from "./CommonComponents/MultipleCards";
 import "./styles.css";
 const flexConfigForRegistration = {
   items: [
@@ -119,6 +120,8 @@ class App extends React.Component {
       switch (Items.type) {
         case "Header":
           return <Header propsData={Items.props} />;
+        case "Cards":
+          return <MultipleCards propsData={Items.props} />;
         case "Card":
           if (isChildrenAvalible) {
             console.log("Callingchilgren");
