@@ -194,6 +194,24 @@ const Hoc = () => Component => {
       };
     }
 
+    handleChange = event => {
+      let { value1 } = this.state;
+      const { name, value } = event.target;
+      // console.log(name,value);
+      this.setState({
+        value1: {
+          ...value1,
+          [name]: value
+        }
+      });
+      // console.log(this.state.value1,"ans");
+    };
+
+    submitfield = e => {
+      e.preventDefault();
+      console.log(this.state.value1);
+      // this.props.onFlexiSubmit(this.state)
+    };
     render() {
       const { flexConfigForHome, flexConfigForRegistration } = this.state;
 
@@ -202,6 +220,8 @@ const Hoc = () => Component => {
           <Component
             home={flexConfigForHome}
             register={flexConfigForRegistration}
+            handleChange={this.handleChange}
+            submitfield={this.submitfield}
             {...this.props}
           />
         </div>

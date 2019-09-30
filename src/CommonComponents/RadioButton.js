@@ -1,42 +1,40 @@
 import React from "react";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import { Typography } from "@material-ui/core";
+const RadioButtons = props => {
+  const { propsData } = props;
+  console.log(propsData, "yfgweiufgeaufhioeargiesgjrthjrtjhrtpjh");
+  let { options } = propsData;
 
-export default function FormControlLabelPosition(props) {
-  const propsData = props.propsData;
-  console.log(propsData.options[0].label);
-  const [value, setValue] = React.useState("female");
-
-  const handleChange = event => {
-    setValue(event.target.value);
-  };
-
+  console.log(options, "oooooooooo");
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">{propsData.label}</FormLabel>
-      <RadioGroup
-        aria-label="position"
-        name="position"
-        value={value}
-        onChange={handleChange}
-        row
-      >
-        <FormControlLabel
-          value="Male"
-          control={<Radio color="primary" />}
-          label={propsData.options[0].label}
-          labelPlacement="end"
-        />
-        <FormControlLabel
-          value="Female"
-          control={<Radio color="primary" />}
-          label={propsData.options[1].label}
-          labelPlacement="end"
-        />
-      </RadioGroup>
-    </FormControl>
+    <div>
+      <Typography variant="h6" color="inherit">
+        {propsData.label}:
+      </Typography>
+      <div>
+        {options.map(option => {
+          return (
+            <React.Fragment>
+              <input
+                name={propsData.name}
+                type="radio"
+                value={option.label}
+                onChange={props.handleChange}
+              />
+              {option.label}
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </div>
   );
-}
+};
+export default RadioButtons;
+// {options.map(option=>{
+//     return  (
+//   <React.Fragment>
+// <input name={option.name} type="radio" value={option.label} />{option.label}
+// </React.Fragment>
+// );
+// })
+// }

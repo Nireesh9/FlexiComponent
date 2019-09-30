@@ -13,14 +13,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function ContainedButtons(props) {
   const propsData = props.propsData;
-
+  const submitfield = props.submitfield;
   console.log(propsData, "fghoyivb");
 
   const classes = useStyles();
 
   return (
     <div>
-      <Button variant="contained" color="primary" className={classes.button}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={submitfield}
+        className={classes.button}
+      >
         {propsData.label}
       </Button>
     </div>

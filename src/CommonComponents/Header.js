@@ -6,10 +6,9 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
+    flexGrow: 1,
+    horozintalAlign: "center",
+    verticalAlign: "center"
   },
   title: {
     flexGrow: 1
@@ -19,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar(props) {
   const classes = useStyles();
   const propsData = props.propsData;
-  console.log(propsData);
+  console.log(propsData, "Headerrrrrrrrrrr");
   return (
     <div className={classes.root}>
       <AppBar position="static">

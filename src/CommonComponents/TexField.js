@@ -21,9 +21,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function FilledTextFields(props) {
   const propsData = props.propsData;
+  const handleChange = props.handleChange;
+  console.log(props, "hvfusdcvsdvsdhucbsd");
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    name: "Cat in the Hat",
+    name: propsData.name,
     Label: propsData.label,
     type: propsData.inputType,
     multiline: "Controlled",
@@ -34,11 +36,13 @@ export default function FilledTextFields(props) {
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         id="filled-name"
+        name={values.name}
         label={values.Label}
         className={classes.textField}
         type={values.type}
         margin="normal"
         variant="filled"
+        onChange={handleChange}
       />
     </form>
   );

@@ -1,66 +1,69 @@
 import React, { Children } from "react";
 import ReactDOM from "react-dom";
-import Header from "../CommonComponents/Header";
-import Card from "../CommonComponents/CardView";
-import TextField from "../CommonComponents/TextField";
-import Button from "../CommonComponents/Button";
-import RadioGruop from "../CommonComponents/RadioButton";
-import MultipleCards from "../CommonComponents/MultipleCards";
-import "../styles.css";
 import Hoc from "../Hoc/Hoc";
 
 class Flexi extends React.Component {
   render() {
-    let { home } = this.props;
-    console.log(home);
+    let { home, register, handleChange, submitfield } = this.props;
+    let { items } = home;
+    // const renderSwitch = Items => {
+    //   let isChildrenAvalible = "children" in Items;
+
+    //   switch (Items.type) {
+    //     case "Header":
+    //       return <Header propsData={Items.props} />;
+    //     case "Cards":
+    //       return <MultipleCards propsData={Items.props} />;
+    //     case "Card":
+    //       if (isChildrenAvalible) {
+    //         return (
+    //           <CardView propsData={Items.props}>
+    //             {Items.children.items.map((Item, Index) => {
+    //               return <div> {renderSwitch(Item)}</div>;
+    //             })}
+    //           </CardView>
+    //         );
+    //       } else {
+    //         return <CardView propsData={Items.props} />;
+    //       }
+
+    //     case "TexField":
+    //       return (
+    //         <TextField propsData={Items.props} handleChange={handleChange} />
+    //       );
+    //     case "RadioGruop":
+    //       return (
+    //         <RadioGruop propsData={Items.props} handleChange={handleChange} />
+    //       );
+    //     case "Button":
+    //       return <Button propsData={Items.props} submitfield={submitfield} />;
+    //     default:
+    //       return "foo";
+    //   }
+    // };
+
     const renderSwitch = Items => {
-      let isChildrenAvalible = "children" in Items;
+      let isChild = "children" in Items;
+      console.log(Items.type, "flexiconfigqedweqfqw");
+      if (isChild) {
+        console.log(Items.children, "Item child");
+        return Items.children.items.map((Data, Index) => {
+          return <div>{renderSwitch(Data)}</div>;
+        });
+      } else {
+        // const Components = require(../Flexi/${item.type}).default;
+        const Components = require(`../CommonComponents/${Items.type}`).default;
 
-      console.log(Items, "ISCHILD");
-
-      switch (Items.type) {
-        case "Header":
-          return <Header propsData={Items.props} />;
-        case "Cards":
-          return <MultipleCards propsData={Items.props} />;
-        case "Card":
-          if (isChildrenAvalible) {
-            console.log("Callingchilgren");
-
-            return Items.children.items.map((Item, Index) => (
-              <Card> {renderSwitch(Item)}</Card>
-            ));
-
-            // return <Card ChildrenData={Items}  />;
-          } else {
-            return <Card ChildrenData={Items.props} />;
-          }
-
-        case "TexField":
-          console.log("Textfieldis displaying");
-          return <TextField propsData={Items.props} />;
-        case "RadioGruop":
-          console.log("Radio displaying");
-          return <RadioGruop propsData={Items.props} />;
-        case "Button":
-          console.log("Button displaying");
-          return <Button propsData={Items.props} />;
-        default:
-          return "foo";
+        return (
+          <Components
+            propsData={Items.props}
+            handleChange={handleChange}
+            submitfield={submitfield}
+          />
+        );
       }
     };
-    return (
-      <div>
-        {home.items.map((Items, Index) =>
-          // Items.type === "Header" ? (
-          //   <Header propsData={Items.props} />
-          // ) : (
-          //   <Card ChildrenData={Items.children} />
-          // )
-          renderSwitch(Items)
-        )}
-      </div>
-    );
+    return <div>{items.map((Items, Index) => renderSwitch(Items))}</div>;
   }
 }
 export default Hoc()(Flexi);
